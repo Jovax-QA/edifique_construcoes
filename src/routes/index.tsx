@@ -302,7 +302,7 @@ function About() {
               loading="lazy"
               width={1280}
               height={960}
-              className="w-full h-full object-cover transition-transform duration-[1400ms] hover:scale-[1.05]"
+              className="w-full h-full object-cover object-[center_7%] transition-transform duration-[1400ms] hover:scale-[1.05]"
             />
           </div>
         </div>
