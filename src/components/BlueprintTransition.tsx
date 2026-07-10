@@ -19,14 +19,14 @@ export function BlueprintTransition() {
         src={blueprint1}
         alt="Planta arquitetônica 1"
         className={`absolute inset-0 w-full h-full object-contain translate-x-70 transition-opacity duration-1000 ${
-          showFirst ? 'opacity-50' : 'opacity-0'
+          showFirst ? 'opacity-55' : 'opacity-0'
         }`}
       />
       <img
         src={blueprint2}
         alt="Planta arquitetônica 2"
         className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-1000 ${
-          showFirst ? 'opacity-0' : 'opacity-80'
+          showFirst ? 'opacity-0' : 'opacity-55'
         }`}
       />
     </div>

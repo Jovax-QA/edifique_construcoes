@@ -425,7 +425,7 @@ function CTA() {
             href="tel:+551130000000"
             className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-medium border border-border text-ink transition-all duration-300 hover:border-primary hover:text-primary"
           >
-            <Phone className="w-4 h-4" /> +55 11 3000-0000
+            <Phone className="w-4 h-4" />(48) 99106-1527
           </a>
         </div>
       </div>
@@ -451,7 +451,7 @@ function Footer() {
           <p className="text-xs uppercase tracking-[0.2em] text-primary mb-4">Contato</p>
           <ul className="space-y-3 text-sm text-foreground/80">
             <li className="flex gap-2"><Mail className="w-4 h-4 text-primary mt-0.5" /> contato@edifique.com.br</li>
-            <li className="flex gap-2"><Phone className="w-4 h-4 text-primary mt-0.5" /> +55 11 3000-0000</li>
+            <li className="flex gap-2"><Phone className="w-4 h-4 text-primary mt-0.5" />(48) 99106-1527</li>
             <li className="flex gap-2"><MapPin className="w-4 h-4 text-primary mt-0.5" /> Av. Paulista, 1000 — São Paulo</li>
           </ul>
         </div>
