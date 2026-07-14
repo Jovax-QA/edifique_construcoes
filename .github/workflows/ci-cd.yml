@@ -33,35 +33,10 @@ jobs:
       - name: Build
         run: npm run build:gh
 
-      - name: Create index.html for GitHub Pages
-        run: |
-          CSS_FILE=$(ls dist/client/assets/styles-*.css | head -1 | xargs basename)
-          JS_FILE=$(ls dist/client/assets/index-*.js | head -1 | xargs basename)
-          ROUTES_FILE=$(ls dist/client/assets/routes-*.js | head -1 | xargs basename)
-          cat > dist/index.html << EOF
-          <!DOCTYPE html>
-          <html lang="pt-BR">
-          <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Edifique Construções</title>
-            <link rel="stylesheet" href="/edifique_construcoes/assets/${CSS_FILE}">
-          </head>
-          <body>
-            <div id="root"></div>
-            <script type="module" src="/edifique_construcoes/assets/${ROUTES_FILE}"></script>
-            <script type="module" src="/edifique_construcoes/assets/${JS_FILE}"></script>
-          </body>
-          </html>
-          EOF
-          cp -r dist/client/assets dist/
-
       - name: Verify build output
         run: |
           echo "Build output:"
           ls -la dist/
-          echo "Index.html content:"
-          cat dist/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
