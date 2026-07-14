@@ -1,42 +1,44 @@
-name: CI/CD
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: 20
+          cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Build project
-        run: npm run build
+      - name: Build
+        run: npm run build:gh
 
       - name: Create index.html for GitHub Pages
         run: |
           CSS_FILE=$(ls dist/client/assets/styles-*.css | head -1 | xargs basename)
           JS_FILE=$(ls dist/client/assets/index-*.js | head -1 | xargs basename)
           ROUTES_FILE=$(ls dist/client/assets/routes-*.js | head -1 | xargs basename)
-          cat > dist/client/index.html << EOF
+          cat > dist/index.html << EOF
           <!DOCTYPE html>
           <html lang="pt-BR">
           <head>
@@ -52,11 +54,30 @@ jobs:
           </body>
           </html>
           EOF
+          cp -r dist/client/assets dist/
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Verify build output
+        run: |
+          echo "Build output:"
+          ls -la dist/
+          echo "Index.html content:"
+          cat dist/index.html
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          folder: dist/client
-          branch: gh-pages
-          single-commit: true
+          path: ./dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
