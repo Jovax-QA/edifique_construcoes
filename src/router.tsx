@@ -14,3 +14,6 @@ export const createRouter = () => {
 
   return router;
 };
+
+// TanStack Start também espera este export em alguns pontos internos do client entry
+export { createRouter as getRouter };

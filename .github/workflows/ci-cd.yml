@@ -23,7 +23,11 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install && npm install --save-dev @lovable.dev/vite-tanstack-config
+        run: npm ci
+
+      - name: Debug node_modules
+        run: ls node_modules/@tanstack/ && cat node_modules/@tanstack/react-query/package.json | grep version
+
 
       - name: Build project
         run: npm run build
