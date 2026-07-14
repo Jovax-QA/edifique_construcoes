@@ -35,6 +35,7 @@ jobs:
         run: |
           CSS_FILE=$(ls dist/client/assets/styles-*.css | head -1 | xargs basename)
           JS_FILE=$(ls dist/client/assets/index-*.js | head -1 | xargs basename)
+          ROUTES_FILE=$(ls dist/client/assets/routes-*.js | head -1 | xargs basename)
           cat > dist/client/index.html << EOF
           <!DOCTYPE html>
           <html lang="pt-BR">
@@ -46,6 +47,7 @@ jobs:
           </head>
           <body>
             <div id="root"></div>
+            <script type="module" src="/edifique_construcoes/assets/${ROUTES_FILE}"></script>
             <script type="module" src="/edifique_construcoes/assets/${JS_FILE}"></script>
           </body>
           </html>
