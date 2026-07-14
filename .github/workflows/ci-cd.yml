@@ -23,7 +23,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install
+        run: npm install && npm install --save-dev @lovable.dev/vite-tanstack-config
 
       - name: Build project
         run: npm run build
