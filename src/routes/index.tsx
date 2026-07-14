@@ -27,7 +27,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Edifique Construções: excelência em construção, reformas e acabamentos refinados para residências e empreendimentos de alto padrão.",
+          "@Edifique Construções: excelência em construção, reformas e acabamentos refinados para residências e empreendimentos de alto padrão.",
       },
       { property: "og:title", content: "Edifique Construções" },
       {
