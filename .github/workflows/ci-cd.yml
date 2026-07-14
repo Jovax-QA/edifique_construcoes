@@ -38,12 +38,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build-output
-          path: dist/client
+          path: .output/public
           retention-days: 1
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          folder: dist/client
+          folder: .output/public
           branch: gh-pages
