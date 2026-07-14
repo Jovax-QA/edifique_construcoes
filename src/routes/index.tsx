@@ -33,7 +33,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Excelência em construção, reformas e acabamentos de alto padrão.",
+          "@Excelência em construção, reformas e acabamentos de alto padrão.",
       },
       { property: "og:type", content: "website" },
       { property: "og:image", content: heroImg },
