@@ -37,3 +37,4 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           folder: dist/client
           branch: gh-pages
+          single-commit: true
