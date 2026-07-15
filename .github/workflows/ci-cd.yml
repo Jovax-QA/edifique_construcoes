@@ -24,7 +24,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
           cache: npm
 
       - name: Install dependencies
@@ -32,9 +32,9 @@ jobs:
 
       - name: Build
         run: npm run build:gh
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
 
-      # GitHub Pages does not provide an SPA rewrite rule. Serving the built
-      # document as 404.html lets client-side URLs load the application too.
       - name: Prepare GitHub Pages files
         shell: bash
         run: |

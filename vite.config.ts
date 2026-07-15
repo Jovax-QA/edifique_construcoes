@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
 // Project Pages is served from /<repository>/, while local development and
@@ -12,13 +13,17 @@ const base = process.env.GITHUB_ACTIONS === "true" && repositoryName
 
 export default defineConfig({
   base,
-  plugins: [react()],
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   build: {
-    cssMinify: false,
+    outDir: "dist",
+    emptyOutDir: true,
   },
 });
