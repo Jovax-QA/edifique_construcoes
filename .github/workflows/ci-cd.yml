@@ -28,15 +28,26 @@ jobs:
           cache: npm
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: npm run build:gh
 
-      - name: Verify build output
+      # GitHub Pages does not provide an SPA rewrite rule. Serving the built
+      # document as 404.html lets client-side URLs load the application too.
+      - name: Prepare GitHub Pages files
+        shell: bash
         run: |
-          echo "Build output:"
-          ls -la dist/
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
+
+      - name: Verify build output
+        shell: bash
+        run: |
+          test -f dist/index.html
+          test -f dist/404.html
+          test -f dist/.nojekyll
+          grep -q '/${{ github.event.repository.name }}/assets/' dist/index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
