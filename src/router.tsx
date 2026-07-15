@@ -1,11 +1,11 @@
 import { QueryClient } from "@tanstack/react-query";
-import { createRouter as createTanStackRouter } from "@tanstack/react-router";
+import { createRouter } from "@tanstack/react-router";
 import { routeTree } from "./routeTree.gen";
 
-export const createRouter = () => {
+export const getRouter = () => {
   const queryClient = new QueryClient();
 
-  const router = createTanStackRouter({
+  const router = createRouter({
     routeTree,
     context: { queryClient },
     scrollRestoration: true,
@@ -15,5 +15,4 @@ export const createRouter = () => {
   return router;
 };
 
-// TanStack Start também espera este export em alguns pontos internos do client entry
-export { createRouter as getRouter };
+export const router = getRouter();
