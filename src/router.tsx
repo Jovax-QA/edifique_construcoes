@@ -7,12 +7,19 @@ export const createRouter = () => {
 
   const router = createTanStackRouter({
     routeTree,
+
     context: { queryClient },
+
     scrollRestoration: true,
+
     defaultPreloadStaleTime: 0,
+
   });
 
+
+
   return router;
+
 };
 
 // TanStack Start também espera este export em alguns pontos internos do client entry
